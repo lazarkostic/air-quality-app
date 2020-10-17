@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { airVisualAPI, airVisualAPIkey } from "./config/apiEndpoints";
 import SearchBox from "./components/SearchBox";
+import ResultsBox from "./components/ResultsBox";
 import loadingSpinner from "./assets/spinner.png";
 
 const App = () => {
@@ -25,7 +26,9 @@ const App = () => {
     console.log("data: ", data);
     const pollution =
       data && data.data && data.data.current && data.data.current.pollution;
-    setAirQualityData(pollution);
+    const weather =
+      data && data.data && data.data.current && data.data.current.weather;
+    setAirQualityData({ pollution, weather });
     setLoading(false);
   };
 
@@ -35,6 +38,7 @@ const App = () => {
         <SearchBox
           onSearch={fetchAirQualityData}
           onLoading={(value) => setLoading(value)}
+          clearData={() => setAirQualityData({})}
         />
         {loading ? (
           <img
@@ -51,9 +55,9 @@ const App = () => {
         ) : (
           <Box style={{ marginTop: "20px" }}>
             {Object.keys(airQualityData).length !== 0 ? (
-              <div>{JSON.stringify(airQualityData)}</div>
+              <ResultsBox data={airQualityData} />
             ) : (
-              <div>empty</div>
+              <div>please enter country/state/city</div>
             )}
           </Box>
         )}

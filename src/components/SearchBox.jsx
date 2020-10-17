@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchBox = ({ onSearch, onLoading }) => {
+const SearchBox = ({ onSearch, onLoading, clearData }) => {
   const classes = useStyles();
 
   const [countries, setCountries] = useState([]);
@@ -88,6 +88,10 @@ const SearchBox = ({ onSearch, onLoading }) => {
     };
     if (selectedState !== "") fetchCities();
   }, [selectedState, selectedCountry]);
+
+  useEffect(() => {
+    if (selectedCity === "") clearData();
+  }, [selectedCity]);
 
   const handleCountryChange = ({ target }) => {
     setSelectedCountry(target.value);
