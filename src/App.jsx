@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { airVisualAPI, airVisualAPIkey } from "./config/apiEndpoints";
 import SearchBox from "./components/SearchBox";
-import loadingSpinner from "./assets/spinner.gif";
+import loadingSpinner from "./assets/spinner.png";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -38,17 +38,18 @@ const App = () => {
         />
         {loading ? (
           <img
-            // className={css`
-            //   position: absolute;
-            //   left: 0;
-            //   right: 0;
-            //   margin: auto;
-            // `}
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              margin: "auto",
+              padding: "20px 0",
+            }}
             src={loadingSpinner}
             alt="loading"
           />
         ) : (
-          <Box>
+          <Box style={{ marginTop: "20px" }}>
             {Object.keys(airQualityData).length !== 0 ? (
               <div>{JSON.stringify(airQualityData)}</div>
             ) : (
