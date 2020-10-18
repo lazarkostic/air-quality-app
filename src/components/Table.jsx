@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 500,
   },
 });
 
@@ -29,25 +29,19 @@ const rows = [
 const CustomTable = ({ data }) => {
   const classes = useStyles();
 
-  console.log("data table: ", data);
+  const renderTableBody = () => {
+    return data.map((d) => (
+      <TableRow key={d.column}>
+        <TableCell style={{ fontWeight: "bold" }}>{d.column}</TableCell>
+        <TableCell>{d.data}</TableCell>
+      </TableRow>
+    ));
+  };
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            {data.map((d) => (
-              <TableCell key={d.column}>{d.column}</TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow key="parameters">
-            {data.map((d) => (
-              <TableCell key={`${d.column}${d.data}`}>{d.data}</TableCell>
-            ))}
-          </TableRow>
-        </TableBody>
+        <TableBody>{renderTableBody()}</TableBody>
       </Table>
     </TableContainer>
   );
