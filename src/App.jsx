@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Container, Box } from "@material-ui/core";
+import { css } from "emotion";
 import axios from "axios";
 
 import { airVisualAPI, airVisualAPIkey } from "./config/apiEndpoints";
@@ -13,7 +14,6 @@ const App = () => {
   const [airQualityData, setAirQualityData] = useState({});
 
   const fetchAirQualityData = async (country, state, city) => {
-    console.log("fetch data for: ", country, state, city);
     setLoading(true);
     const { data } = await axios.get(`${airVisualAPI}city`, {
       params: {
@@ -23,7 +23,6 @@ const App = () => {
         key: airVisualAPIkey,
       },
     });
-    console.log("data: ", data);
     const pollution =
       data && data.data && data.data.current && data.data.current.pollution;
     const weather =
@@ -34,7 +33,12 @@ const App = () => {
 
   return (
     <Box display="flex" flexDirection="column">
-      <Container style={{ textAlign: "center", marginTop: "100px" }}>
+      <Container
+        className={css`
+          text-align: center;
+          margin-top: 100px;
+        `}
+      >
         <SearchBox
           onSearch={fetchAirQualityData}
           onLoading={(value) => setLoading(value)}
@@ -42,18 +46,22 @@ const App = () => {
         />
         {loading ? (
           <img
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              margin: "auto",
-              padding: "20px 0",
-            }}
+            className={css`
+              position: absolute;
+              left: 0;
+              right: 0;
+              margin: auto;
+              padding: 20px 0;
+            `}
             src={loadingSpinner}
-            alt="loading"
+            alt="loading spinner"
           />
         ) : (
-          <Box style={{ marginTop: "20px" }}>
+          <Box
+            className={css`
+              margin-top: 20px;
+            `}
+          >
             {Object.keys(airQualityData).length !== 0 ? (
               <ResultsBox data={airQualityData} />
             ) : null}
