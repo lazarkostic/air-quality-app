@@ -35,8 +35,18 @@ const App = () => {
     <Box display="flex" flexDirection="column">
       <Container
         className={css`
+          margin-top: 60px;
           text-align: center;
-          margin-top: 100px;
+          font-size: 30px;
+          font-weight: 700;
+        `}
+      >
+        AirQuality
+      </Container>
+      <Container
+        className={css`
+          text-align: center;
+          margin-top: 30px;
         `}
       >
         <SearchBox

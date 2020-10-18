@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 150,
     [theme.breakpoints.down("sm")]: {
-      minWidth: 250,
+      minWidth: 300,
     },
   },
   select: {
