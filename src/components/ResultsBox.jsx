@@ -72,6 +72,7 @@ const ResultsBox = ({ data }) => {
   const getWeatherIcon = (code) => {
     return (
       <img
+        alt={code}
         src={`https://www.airvisual.com/images/${code}.png`}
         style={{
           display: "inline-block",
