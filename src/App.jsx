@@ -38,7 +38,6 @@ const App = () => {
           margin-top: 60px;
           text-align: center;
           font-size: 30px;
-          font-weight: 700;
         `}
       >
         AirQuality
