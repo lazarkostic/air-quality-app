@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    [theme.breakpoints.down("sm")]: {
+      width: "300px",
+    },
   },
 }));
 

@@ -17,12 +17,29 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 150,
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 250,
+    },
   },
   select: {
     textAlign: "left",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  button: {
+    marginTop: "15px",
+    [theme.breakpoints.up("md")]: {
+      marginLeft: "20px",
+    },
+  },
+  box: {
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
@@ -106,7 +123,7 @@ const SearchBox = ({ onSearch, onLoading, clearData }) => {
   };
 
   return (
-    <Box>
+    <Box className={classes.box}>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Country</InputLabel>
         <Select
@@ -165,7 +182,7 @@ const SearchBox = ({ onSearch, onLoading, clearData }) => {
         </Select>
       </FormControl>
       <Button
-        style={{ marginTop: "15px", marginLeft: "20px" }}
+        className={classes.button}
         variant="contained"
         color="primary"
         onClick={() => onSearch(selectedCountry, selectedState, selectedCity)}
