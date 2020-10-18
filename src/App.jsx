@@ -56,9 +56,7 @@ const App = () => {
           <Box style={{ marginTop: "20px" }}>
             {Object.keys(airQualityData).length !== 0 ? (
               <ResultsBox data={airQualityData} />
-            ) : (
-              <div>please enter country/state/city</div>
-            )}
+            ) : null}
           </Box>
         )}
       </Container>
